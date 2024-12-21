@@ -46,12 +46,46 @@ products.forEach((product) => {
         Added
       </div>
 
-      <button class="add-to-cart-button button-primary">
+      <button 
+        class="add-to-cart-button button-primary js-add-to-cart"
+        data-product-id="${product.id}"
+      >
         Add to Cart
       </button>
     </div>
   `;
 });
+//data-product-name="${product.name}" is a "data" attribute that allows you to store extra information on an element
+//it is always prefixed with "data-" and can be accessed via the dataset property
 
-//
 document.querySelector('.js-products-grid').innerHTML = productHTML;
+
+// format forEach function : array.forEach(value, index) => {}
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+
+    const productId = button.dataset.productId;
+
+    //dataset is a property that allows you to access "data" attributes on an element
+    // kebab-case in HTML becomes camelCase in JavaScript 
+    // (data-product-Id becomes dataset.productId)
+
+    let productAlreadyInCart;
+    
+    cart.forEach((cartItem) => {
+      if (productId === cartItem.productId) {
+        productAlreadyInCart = cartItem;
+      }
+    });
+
+    if (productAlreadyInCart) {
+      productAlreadyInCart.quantity += 1;
+    } else {
+      cart.push({
+        productId: productId,
+        quantity: 1  
+      });
+    }
+    console.log(cart);
+  });
+});
