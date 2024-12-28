@@ -64,7 +64,13 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productHTML;
 
-calculateCartQuantity();
+function updateCartQuantity() {
+  const cartQuantity = calculateCartQuantity();
+  document.querySelector('.js-cart-quantity')
+    .innerHTML = cartQuantity;
+}
+
+updateCartQuantity();
 
 
 // format forEach function : array.forEach(value, index) => {}
@@ -74,7 +80,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     const productId = button.dataset.productId;
 
     addToCart(productId);
-    calculateCartQuantity();
+    updateCartQuantity();
 
     //dataset is a property that allows you to access "data" attributes on an element
     // kebab-case in HTML becomes camelCase in JavaScript 

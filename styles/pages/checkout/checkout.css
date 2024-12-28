@@ -212,9 +212,10 @@
 
 .quantity-input {
   width: 30px;
+  display: none;
 }
 
-.quantity-input, .save-quantity-link-css {
+.save-quantity-link {
   display: none;
 }
 
@@ -225,6 +226,10 @@
 .is-editing-quantity .save-quantity-link {
   display: initial;
   cursor: pointer;
+}
+
+.is-editing-quantity .quantity-label {
+  display: none;
 }
 
 .is-editing-quantity .update-quantity-link {
