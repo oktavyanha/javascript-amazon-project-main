@@ -1,16 +1,16 @@
 class Cart{
-  cartItems; // we no need 'let' anymore
-  localStorageKey;
+  cartItems; // we no need 'let' anymore // public class field
+  #localStorageKey; // # is a private class field/property
 
   constructor(localStorageKey){
-    this.localStorageKey = localStorageKey; // class parameter saved in constructor
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey; // class parameter saved in constructor
+    this.#loadFromStorage(); // private method
 
     //'this' refers to the object that we will define later
   };  
 
-  loadFromStorage(){ // this.cartItems is the same as cart.cartItems 
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [{ // || is a logical OR operator
+  #loadFromStorage(){ // this.cartItems is the same as cart.cartItems 
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [{ // || is a logical OR operator
         productId :"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         quantity: 2,
         deliveryOptionId: '1',
@@ -23,7 +23,7 @@ class Cart{
   }
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   };
 
   addToCart(productId) {
