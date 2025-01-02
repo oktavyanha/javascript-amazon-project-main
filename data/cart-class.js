@@ -1,4 +1,4 @@
-class Cart{
+export class Cart{
   cartItems; // we no need 'let' anymore // public class field
   #localStorageKey; // # is a private class field/property
 
