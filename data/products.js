@@ -116,9 +116,9 @@ export function loadProducts(fun) {
       return new Product(productDetails);
     });
 
-    console.log(products);
+    console.log('Products loaded');
 
-    fun();
+    fun(); //in checkout.js, 'fun()' is arrow function '() => {}' containing some functions
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
