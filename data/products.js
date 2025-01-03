@@ -117,13 +117,16 @@ export function loadProductsFetch(){
 
       }
       return new Product(productDetails);
-    });
+    })
 
     console.log('Products loaded');
+  }).catch(() => { //handle error for promises
+    console.log('An error occurred loading the products. Please try again later.');
   });
 
   return promise;
 };
+
 
 /*
 loadProductsFetch().then(() => {
@@ -149,9 +152,14 @@ export function loadProducts(fun) {
     fun(); //in checkout.js, 'fun()' is arrow function '() => {}' containing some functions
   });
 
+  xhr.addEventListener('error', (error) => { //handle error for callbacks
+    console.error('An error occurred loading the products. Please try again later.');
+  });
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+
 
 
 

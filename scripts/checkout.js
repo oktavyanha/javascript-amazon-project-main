@@ -9,14 +9,25 @@ import { loadCart } from "../data/cart.js";
 
 async function loadPage() {
 
-  await loadProductsFetch();
+  try{
 
-  const value = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve('value3'); // resolve will return 'value3' as value variable
+    // throw 'error1';
+
+    await loadProductsFetch();
+
+    const value = await new Promise((resolve, reject) => {
+      // throw 'error2';
+
+      loadCart(() => {
+        // reject('error3'); // reject will return 'error3' as value variable
+        resolve('value3'); // resolve will return 'value3' as value variable
+      });
     });
-  });
+  } catch(error) { // handling error for async await
+    console.log('unexpected error. Please try again later', error);
+  }
 
+  
   renderCheckoutHeader();
   renderOrderSummary();
   renderPaymentSummary();
