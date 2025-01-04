@@ -2,7 +2,7 @@ import { renderOrderSummary } from "./checkout/orderSummary.js";
 import {renderPaymentSummary} from './checkout/paymentSummary.js';
 import {renderCheckoutHeader} from './checkout/checkoutHeader.js';
 import { loadProducts, loadProductsFetch } from "../data/products.js";
-import { loadCart } from "../data/cart.js";
+import { loadCart, loadCartFetch } from "../data/cart.js";
 
 // import '../data/car.js'
 // import '../data/backend-practice.js';
@@ -13,16 +13,11 @@ async function loadPage() {
 
     // throw 'error1';
 
-    await loadProductsFetch();
+    await Promise.all([
+      loadProductsFetch(),
+      loadCartFetch()
+    ]); 
 
-    const value = await new Promise((resolve, reject) => {
-      // throw 'error2';
-
-      loadCart(() => {
-        // reject('error3'); // reject will return 'error3' as value variable
-        resolve('value3'); // resolve will return 'value3' as value variable
-      });
-    });
   } catch(error) { // handling error for async await
     console.log('unexpected error. Please try again later', error);
   }
